@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity(name="job")
@@ -22,16 +23,15 @@ public class JobEntity {
     private UUID id;
     private String description;
     private String benefits;
+    @NotBlank
     private String level;
 
-    @ManyToOne()
-    @JoinColumn(name = "company_id",
-    insertable = false,
-    updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private CompanyEntity companyEntity;
 
     @Column(name = "company_id")
-    private UUID companyID;
+    private UUID companyId;
     
     @CreationTimestamp
     private LocalDateTime createdAt;
